@@ -4,9 +4,8 @@ import dash_html_components as html
 import pandas as pd
 import plotly.graph_objs as go
 import os
-df = pd.read_csv(
-    'https://raw.githubusercontent.com/plotly/'
-    'datasets/master/gapminderDataFiveYear.csv')
+CSV_PATH=os.environ["PATHKEY"]
+df = pd.read_csv(CSV_PATH)
 routes = os.environ["ROUTE"]
 app = dash.Dash(url_base_pathname=routes)
 server = app.server
