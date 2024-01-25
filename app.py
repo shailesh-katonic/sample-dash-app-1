@@ -5,8 +5,8 @@ import pandas as pd
 import plotly.graph_objs as go
 import os
 
-CSV_PATH=os.environ["PATHKEY"]
-df = pd.read_csv(CSV_PATH)
+
+df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv')
 
 routes = os.environ["ROUTE"]
 app = dash.Dash(url_base_pathname=routes)
@@ -23,6 +23,7 @@ app.layout = html.Div(style={'paddingLeft': '40px', 'paddingRight': '40px'}, chi
         marks={str(year): str(year) for year in df['year'].unique()}
     )
 ])
+
 @app.callback(
     dash.dependencies.Output('graph-with-slider', 'figure'),
     [dash.dependencies.Input('year-slider', 'value')])
@@ -54,4 +55,4 @@ def update_figure(selected_year):
         )
     }
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0', port=8050)
