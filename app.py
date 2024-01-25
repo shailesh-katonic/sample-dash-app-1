@@ -4,11 +4,13 @@ import dash_html_components as html
 import pandas as pd
 import plotly.graph_objs as go
 import os
+
 CSV_PATH=os.environ["PATHKEY"]
 df = pd.read_csv(CSV_PATH)
+
 routes = os.environ["ROUTE"]
 app = dash.Dash(url_base_pathname=routes)
-server = app.server
+
 # Set layout
 app.layout = html.Div(style={'paddingLeft': '40px', 'paddingRight': '40px'}, children=[
     dcc.Graph(id='graph-with-slider'),
